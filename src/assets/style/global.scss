@@ -1,0 +1,18 @@
+html {
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  color: #dee1e5;
+
+  @include mobile-big {
+    font-size: 12px;
+  }
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: #dee1e5;
+  text-decoration: none;
+}

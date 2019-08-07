@@ -1,0 +1,108 @@
+@mixin desktop-large {
+  @media screen and (min-width: 2000px) {
+    @content;
+  }
+}
+
+@mixin desktop-small {
+  @media screen and (max-width: 1500px) {
+    @content;
+  }
+}
+
+@mixin laptop-large {
+  @media screen and (max-width: 1300px) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media screen and (max-width: 1150px) {
+    @content;
+  }
+}
+
+@mixin laptop-small {
+  @media screen and (max-width: 1050px) {
+    @content;
+  }
+}
+
+@mixin laptop-xsmall {
+  @media screen and (max-width: 950px) {
+    @content;
+  }
+}
+
+@mixin mobile-big {
+  @media screen and (max-width: 720px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: 600px) {
+    @content;
+  }
+}
+
+@mixin mobile-small {
+  @media screen and (max-width: 450px) {
+    @content;
+  }
+}
+
+@mixin mobile-xsmall {
+  @media screen and (max-width: 350px) {
+    @content;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+@mixin absolute-overlap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin container {
+  width: 100%;
+  max-width: 1140px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@mixin button-background-1 {
+  clip-path: polygon(0 0, 18% 0, 23% 15%, 21% 0, 100% 0, 97% 100%, 90% 100%, 85% 85%, 87% 100%, 3% 100%);
+}
+
+@mixin button-background-2 {
+  clip-path: polygon(3% 0, 79% 0, 77% 15%, 82% 0, 97% 0, 100% 100%, 13% 100%, 15% 85%, 10% 100%, 0 100%);
+}
+
+@mixin button-background-3 {
+  clip-path: polygon(0 0, 100% 10%, 97.5% 100%, 5% 100%);
+}
+
+@mixin background-image($src) {
+  .webp & {
+    background-image: url('/images/webp/#{$src}.webp');
+  }
+
+  .no-webp & {
+    background-image: url('/images/png/#{$src}.png');
+  }
+}

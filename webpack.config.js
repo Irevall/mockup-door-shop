@@ -23,7 +23,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Applover Task',
       template: path.resolve(__dirname, './src/index.html'),
-      favicon: path.resolve(__dirname, './src/static/icon.png')
+      favicon: path.resolve(__dirname, './src/static/logo.png')
     }),
     new CopyWebpackPlugin([{ from: 'src/static', to: './' }]),
     new DefinePlugin({
@@ -95,18 +95,12 @@ module.exports = {
         loader: '@alienfast/i18next-loader',
         query: { relativePathAsNamespace: true }
       },
-      {
-        test: /modernizr.config.js$/,
-        loader: 'modernizr-loader'
-      },
     ]
   },
   resolve: {
     extensions: ['*', '.js', '.vue'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      modernizr$: path.resolve(__dirname, 'modernizr.config.js')
     }
-  },
-
+  }
 };

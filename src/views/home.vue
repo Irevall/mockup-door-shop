@@ -1,6 +1,6 @@
 <template>
   <main>
-
+    <span>blyat</span>
   </main>
 </template>
 

@@ -1,11 +1,7 @@
 html {
-  font-family: 'Rubik', sans-serif;
-  font-size: 16px;
-  color: #dee1e5;
-
-  @include mobile-big {
-    font-size: 12px;
-  }
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #7E7E7E;
 }
 
 body {
@@ -13,6 +9,6 @@ body {
 }
 
 a {
-  color: #dee1e5;
+  color: #7E7E7E;
   text-decoration: none;
 }

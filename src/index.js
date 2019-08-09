@@ -1,2 +1,1 @@
-import 'modernizr';
 import './app';

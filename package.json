@@ -1,5 +1,5 @@
 {
-  "name": "applover-task",
+  "name": "frontend-recruitment-task-08.19",
   "version": "1.0.0",
   "scripts": {
     "build": "webpack -env production --config webpack.prod.config.js",

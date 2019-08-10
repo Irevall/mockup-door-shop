@@ -1,6 +1,5 @@
 <template>
   <div class="applover">
-    <app-navigation/>
     <router-view/>
   </div>
 </template>

@@ -8,6 +8,7 @@ Vue.use(VueI18Next);
 
 i18next
   .init({
+    lng: 'en',
     fallbackLng: 'en',
     whitelist: ['en', 'pl'],
     load: 'languageOnly',

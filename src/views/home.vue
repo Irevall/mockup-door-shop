@@ -1,17 +1,15 @@
 <template>
-  <main>
-    <span>blyat</span>
-  </main>
+  <div class="view-home">
+    test
+  </div>
 </template>
 
 <script>
+
   export default {
     name: 'view-home',
-    components: {  },
   };
 </script>
 
 <style lang="scss">
-  main {
-  }
 </style>

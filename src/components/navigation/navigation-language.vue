@@ -1,10 +1,10 @@
 <template>
   <div class="navigation-language">
-    <span class="navigation-language__select-text">{{ $t('navigation.select-language') }}</span>
+    <span class="navigation-language__select-text">{{ $t('navigation:select-language') }}:</span>
 
     <div class="navigation-language__dropdown"  @click="toggle">
       <div class="dropdown__header">
-        <span class="dropdown__item">{{ this.language.name }}</span>
+        <span class="dropdown__item">{{ language.name }}</span>
         <img class="dropdown__icon" src="/angle-down.svg"/>
       </div>
 
@@ -38,7 +38,8 @@
       }
     },
     created() {
-      console.log(this.language)
+      console.log(this.language);
+      console.log(this.$store);
     },
     methods: {
       async selectLanguage(language) {

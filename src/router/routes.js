@@ -1,8 +1,19 @@
 export default [
   {
     path: '/',
-    name: 'home',
-    component: () => import('@/views/home'),
+    component: () => import('@/views/layout'),
+    children: [
+      {
+        path: '/',
+        name: 'home',
+        component: () => import('@/views/home')
+      },
+      {
+        path: '/login',
+        name: 'login',
+        component: () => import('@/views/login')
+      },
+    ]
   },
   {
     path: '*',

@@ -1,0 +1,33 @@
+.form-input {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0;
+  width: 100%;
+}
+
+.form-input__label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #c4bfd4;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.form-input__input {
+  box-sizing: border-box;
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #C9C6C6;
+  border-radius: 6px;
+
+  &--invalid {
+    border-color: var(--color-error);
+  }
+
+  &:disabled, &:read-only {
+    background: #F6F6F6;
+  }
+}

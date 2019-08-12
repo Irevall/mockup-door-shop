@@ -2,9 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import user from './modules/user';
+import door from './modules/door';
 
 const modules = {
   user,
+  door,
 };
 
 Vue.use(Vuex);

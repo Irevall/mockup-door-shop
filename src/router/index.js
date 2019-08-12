@@ -15,10 +15,12 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  if (to.name === 'login') return next();
-
   const authenticated = await store.getters['user/authenticated'];
-  console.log(authenticated);
+
+  if (to.name === 'login') {
+    if (authenticated) return next({ name: 'home' })
+    else return next();
+  }
 
   if (!authenticated) return next({ name: 'login' });
 

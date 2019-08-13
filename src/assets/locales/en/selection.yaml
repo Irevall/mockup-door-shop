@@ -2,3 +2,17 @@ navigation:
   - Choose door
   - Choose door division
   - Choose color
+
+setting:
+  door-type:
+    title: Door type
+    single: Single door
+    double: Double door
+
+  door-size:
+    title: Door size
+    width: Width
+    height: Height
+
+back: Back
+next-step: Next step

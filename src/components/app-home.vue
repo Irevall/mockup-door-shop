@@ -1,23 +1,26 @@
 <template>
   <div class="app-home">
     <selection-navigation :step="step"/>
+    <div class="app-home__content-wrapper">
     <div class="app-home__content">
       <selection-preview :door="door"/>
       <div class="app-home__settings">
         <div class="app-home__setting app-home__setting--step1">
-          <selection-setting :title="$t('selection:setting:door-type.title')">
-            <div class="app-home__single-setting">
-              <input type="radio" name="door-type" id="single-door" v-model="door.type" v-bind:value="1">
-              <label for="single-door">{{ $t('selection:setting:door-type.single') }}</label>
-            </div>
+          <settings-type :door="door"/>
+          <settings-size :door="door"/>
+        </div>
 
-            <div class="app-home__single-setting">
-              <input type="radio" name="door-type" id="double-door" v-model="door.type" v-bind:value="2">
-              <label for="double-door">{{ $t('selection:setting:door-type.double') }}</label>
-            </div>
-        </selection-setting>
+        <div class="app-home__step-buttons">
+          <span class="app-home__step-button app-home__step-button--back" v-if="step !== 0" @click="step--">
+            {{ $t('selection:back') }}
+          </span>
+
+          <span class="app-home__step-button app-home__step-button--next" @click="step++">
+            {{ $t('selection:next-step') }}
+          </span>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -26,11 +29,12 @@
   import { mapGetters } from 'vuex'
   import SelectionNavigation from '@/components/selection/selection-navigation';
   import SelectionPreview from '@/components/selection/selection-preview';
-  import SelectionSetting from '@/components/selection/selection-setting';
+  import SettingsType from '@/components/selection/settings/settings-type';
+  import SettingsSize from '@/components/selection/settings/settings-size';
 
   export default {
     name: 'app-home',
-    components: { SelectionSetting, SelectionNavigation, SelectionPreview },
+    components: { SettingsSize, SettingsType, SelectionNavigation, SelectionPreview },
     data() {
       return {
         step: 0,
@@ -48,14 +52,21 @@
 <style lang="scss">
   .app-home__content {
     @include flex-center;
-    flex-direction: row;
-    margin-top: 160px;
+  }
+
+  .app-home__content {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding-top: 60px;
   }
 
   .app-home__settings {
     display: flex;
-    align-self: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
     margin-top: 10px;
+    margin-left: 30px;
+    height: calc(100% - 10px);
   }
 
   .app-home__single-setting {
@@ -67,9 +78,29 @@
     }
   }
 
-  input[type="radio"] {
-    margin: 0;
-    background: white;
-    border: none;
+  .app-home__step-buttons {
+    display: flex;
+  }
+
+  .app-home__step-button {
+    width: 130px;
+    padding: 5px 0;
+    border: 2px solid #6F91AA;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &--back {
+      color: #6F91AA;
+    }
+
+    &--next {
+      background: #6F91AA;
+      color: #FFFFFF;
+    }
+
+    &:not(:first-of-type) {
+      margin-left: 15px;
+    }
   }
 </style>

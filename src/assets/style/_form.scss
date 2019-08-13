@@ -31,3 +31,17 @@
     background: #F6F6F6;
   }
 }
+
+input {
+  box-sizing: border-box;
+  outline: none;
+  border: 1px solid #C9C6C6;
+  padding: 0.5rem;
+  color: inherit;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

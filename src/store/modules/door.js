@@ -12,6 +12,9 @@ const mutations = {
     if (door) setItem('cache:door', door);
     else removeItem('cache:door');
   },
+  updateDoor(state, { property, value }) {
+    state.door.update(property, value);
+  }
 };
 
 const actions = {

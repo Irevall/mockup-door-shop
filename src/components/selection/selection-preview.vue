@@ -1,7 +1,7 @@
 <template>
   <div class="selection-preview">
     <div class="selection-preview__door-wrapper">
-      <div class="selection-preview__door" v-for="doorIndex in door.type">
+      <div class="selection-preview__door" v-for="doorIndex in door.type" :style="{ width: `${door.width}px`, height: `${door.height}px` }">
         <div class="door__beams">
           <div class="door__beam" v-for="beamIndex in beams"></div>
         </div>
@@ -84,8 +84,6 @@
 
   .selection-preview__door {
     position: relative;
-    width: 120px;
-    height: 250px;
 
     --door-color: #5A5858;
     --door-inner-size: 7px;

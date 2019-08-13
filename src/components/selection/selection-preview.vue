@@ -3,11 +3,11 @@
     <div class="selection-preview__door-wrapper">
       <div class="selection-preview__door" v-for="doorIndex in door.type" :style="{ width: `${door.width}px`, height: `${door.height}px` }">
         <div class="door__beams">
-          <div class="door__beam" v-for="beamIndex in beams"></div>
+          <div class="door__beam" v-for="beamIndex in door.beams"></div>
         </div>
 
         <div class="door__posts">
-          <div class="door__post" v-for="postIndex in posts"></div>
+          <div class="door__post" v-for="postIndex in door.posts"></div>
         </div>
 
         <div class="selection-preview__dimension selection-preview__dimension--width selection-preview__dimension--bottom">
@@ -52,12 +52,6 @@
       }
     },
     computed: {
-      beams() {
-        return this.door.beams + 2;
-      },
-      posts() {
-        return this.door.posts + 2;
-      },
       combinedWidth() {
         return this.door.type * this.door.width;
       }
@@ -85,6 +79,8 @@
   .selection-preview__door {
     position: relative;
 
+    border: var(--door-inner-size) solid var(--door-color);
+
     --door-color: #5A5858;
     --door-inner-size: 7px;
 
@@ -96,7 +92,7 @@
   .door__beams, .door__posts {
     position: absolute;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 100%;
     height: 100%;
   }

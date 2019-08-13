@@ -14,5 +14,16 @@ setting:
     width: Width
     height: Height
 
+  door-division:
+    title: Door division
+    beams: Number of beams
+    posts: Number of posts
+
+  door-color:
+    title: Choose color
+    black: Black
+    gray: Gray
+    white: White
+
 back: Back
 next-step: Next step

@@ -18,11 +18,12 @@
 
 <style lang="scss">
   .settings-setting {
+    width: 300px;
     margin-bottom: 30px;
   }
 
   .settings-setting__header {
-    min-width: 150px;
+    width: 150px;
     border-bottom: 1px solid #F7F7F7;
     padding: 5px 0;
   }

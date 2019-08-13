@@ -5,17 +5,25 @@
     <div class="app-home__content">
       <selection-preview :door="door"/>
       <div class="app-home__settings">
-        <div class="app-home__setting app-home__setting--step1">
-          <settings-type :door="door"/>
-          <settings-size :door="door"/>
+        <div class="app-home__setting app-home__setting--step1" v-if="step === 1">
+          <settings-type/>
+          <settings-size/>
+        </div>
+
+        <div class="app-home__setting app-home__setting--step2" v-if="step === 2">
+          <settings-division/>
+        </div>
+
+        <div class="app-home__setting app-home__setting--step3" v-if="step === 3">
+          <settings-color/>
         </div>
 
         <div class="app-home__step-buttons">
-          <span class="app-home__step-button app-home__step-button--back" v-if="step !== 0" @click="step--">
+          <span class="app-home__step-button app-home__step-button--back" v-if="step !== 1" @click="backStep">
             {{ $t('selection:back') }}
           </span>
 
-          <span class="app-home__step-button app-home__step-button--next" @click="step++">
+          <span class="app-home__step-button app-home__step-button--next" @click="nextStep">
             {{ $t('selection:next-step') }}
           </span>
         </div>
@@ -31,13 +39,15 @@
   import SelectionPreview from '@/components/selection/selection-preview';
   import SettingsType from '@/components/selection/settings/settings-type';
   import SettingsSize from '@/components/selection/settings/settings-size';
+  import SettingsDivision from '@/components/selection/settings/settings-division';
+  import SettingsColor from '@/components/selection/settings/settings-color';
 
   export default {
     name: 'app-home',
-    components: { SettingsSize, SettingsType, SelectionNavigation, SelectionPreview },
+    components: { SettingsColor, SettingsDivision, SettingsSize, SettingsType, SelectionNavigation, SelectionPreview },
     data() {
       return {
-        step: 0,
+        step: 1,
       }
     },
     computed: {
@@ -45,6 +55,18 @@
     },
     created() {
       console.log(this.door);
+    },
+    methods: {
+      backStep() {
+        if (this.step > 1) {
+         this.step--
+        }
+      },
+      nextStep() {
+        if (this.step < 3) {
+          this.step++
+        }
+      }
     }
   };
 </script>

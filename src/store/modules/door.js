@@ -1,4 +1,4 @@
-import { getItem, removeItem, setItem } from '@/services/StorageService'
+import { getSessionItem, setSessionItem } from '@/services/StorageService';
 import { Door } from '@/models/Door';
 
 const state = {
@@ -8,19 +8,17 @@ const state = {
 const mutations = {
   setDoor(state, { door }) {
     state.door = door;
-
-    if (door) setItem('cache:door', door);
-    else removeItem('cache:door');
+    setSessionItem('cache:door', door);
   },
   updateDoor(state, { property, value }) {
     state.door.update(property, value);
-    setItem('cache:door', state.door);
+    setSessionItem('cache:door', state.door);
   }
 };
 
 const actions = {
   async init({ commit, dispatch }) {
-    const cachedDoor = getItem('cache:door', null);
+    const cachedDoor = getSessionItem('cache:door', null);
     const door = new Door(cachedDoor);
     commit('setDoor', { door });
   },

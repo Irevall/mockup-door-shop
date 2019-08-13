@@ -1,4 +1,10 @@
-import { getItem, removeItem, setItem } from '@/services/StorageService'
+import {
+  getLocalItem, getSessionItem,
+  removeLocalItem,
+  removeSessionItem,
+  setLocalItem,
+  setSessionItem
+} from '@/services/StorageService';
 import { getOrganization, login } from '@/services/ApiService';
 
 const state = {
@@ -11,8 +17,15 @@ const mutations = {
   setToken (state, { token, keepLogged }) {
     state.token = token;
 
-    if (token && keepLogged) setItem('cache:token', token);
-    else removeItem('cache:token');
+    if (token) {
+      if (keepLogged) setLocalItem('cache:token', token);
+      else removeLocalItem('cache:token');
+      setSessionItem('cache:token', token);
+    }
+    else {
+      removeLocalItem('cache:token');
+      removeSessionItem('cache:token');
+    }
   },
   setOrganization(state, organization) {
     state.organization = organization;
@@ -21,19 +34,17 @@ const mutations = {
     state.loading = !!loadingPromise;
     state.loadingPromise = loadingPromise;
   },
-  updateUser (state, updatePayload) {
-    state.user.update(updatePayload);
-    setItem('cache:user', state.user);
-  }
 };
 
 const actions = {
-  async init ({ commit, dispatch }) {
-    const token = getItem('cache:token', null);
-    commit('setToken', { token, keepLogged: true });
-    if (token) {
-      await dispatch('getOrganization', { token });
-    }
+  async init ({ state, commit, dispatch }) {
+    const localToken = getLocalItem('cache:token', null);
+    const sessionToken = getSessionItem('cache:token', null);
+
+    if (localToken) commit('setToken', { token: localToken, keepLogged: true });
+    else if (sessionToken) commit('setToken', { token: sessionToken, keepLogged: false });
+
+    if (localToken || sessionToken) await dispatch('getOrganization', { token: state.token });
   },
   async login ({ commit }, { email, password, keepLogged }) {
     try {
@@ -54,13 +65,14 @@ const actions = {
 
 const getters = {
   authenticated(state) {
-    console.log('blyat');
-    console.log(state.token);
     return !!state.token;
   },
   token(state) {
     return state.token;
   },
+  organization(state) {
+    return state.organization;
+  }
 };
 
 export default {

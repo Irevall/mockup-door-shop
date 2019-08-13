@@ -16,6 +16,6 @@
 
 <style lang="scss">
   main {
-
+    position: relative;
   }
 </style>

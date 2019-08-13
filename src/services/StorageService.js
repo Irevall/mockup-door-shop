@@ -2,16 +2,21 @@ function createKey(name) {
   return `applover:${name}`;
 }
 
-function getStorage() {
+function getLocalStorage() {
   return localStorage;
 }
 
-export function setItem(name, value) {
-  getStorage().setItem(createKey(name), JSON.stringify(value));
+function getSessionStorage() {
+  return sessionStorage;
 }
 
-export function getItem(name, defaultValue) {
-  const value = getStorage().getItem(createKey(name));
+export function setLocalItem(name, value) {
+  getLocalStorage().setItem(createKey(name), JSON.stringify(value));
+}
+
+export function getLocalItem(name, defaultValue) {
+  const value = getLocalStorage().getItem(createKey(name));
+
   if (!value) return defaultValue;
   try {
     return JSON.parse(value);
@@ -20,6 +25,24 @@ export function getItem(name, defaultValue) {
   }
 }
 
-export function removeItem(name) {
-  getStorage().removeItem(createKey(name));
+export function removeLocalItem(name) {
+  getLocalStorage().removeItem(createKey(name));
+}
+
+export function setSessionItem(name, value) {
+  getSessionStorage().setItem(createKey(name), JSON.stringify(value));
+}
+
+export function getSessionItem(name, defaultValue) {
+  const value = getSessionStorage().getItem(createKey(name));
+  if (!value) return defaultValue;
+  try {
+    return JSON.parse(value);
+  } catch (err) {
+    return value;
+  }
+}
+
+export function removeSessionItem(name) {
+  getSessionStorage().removeItem(createKey(name));
 }

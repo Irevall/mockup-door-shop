@@ -24,29 +24,22 @@
         languages: {
           pl: { code: 'pl', name: 'Polski' },
           en: { code: 'en', name: 'English' },
-          de: { code: 'de', name: 'Deutsch' },
         },
       }
     },
     computed: {
       language() {
-        // return this.languages[this.$i18n.i18next.language];
-        return this.languages['en'];
+        return this.languages[this.$i18n.i18next.language];
       },
       languageList() {
         return [...Object.values(this.languages).filter(language => language !== this.language)];
       }
-    },
-    created() {
-      console.log(this.language);
-      console.log(this.$store);
     },
     methods: {
       async selectLanguage(language) {
         await this.$i18n.i18next.changeLanguage(language.code);
         this.isActive = false;
       },
-
       toggle() {
         this.isActive = !this.isActive;
       },

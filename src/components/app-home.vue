@@ -53,9 +53,6 @@
     computed: {
       ...mapGetters({ door: 'door/door' })
     },
-    created() {
-      console.log(this.door);
-    },
     methods: {
       backStep() {
         if (this.step > 1) {

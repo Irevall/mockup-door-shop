@@ -1,2 +1,12 @@
 select-language: Select language
 my-organization: My organization
+
+organization:
+  title: Organization
+  name: Name
+  email: Email
+  city: City
+  address-line-1: First address line
+  address-line-2: Second address line
+  postal-code: Postal code
+  phone-number: Phone number

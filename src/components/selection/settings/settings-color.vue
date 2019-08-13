@@ -37,9 +37,6 @@
         this.$store.commit('door/updateDoor', { property: 'color', value });
       }
     },
-    created() {
-      // console.log(this.colors);
-    }
   };
 </script>
 

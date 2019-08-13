@@ -21,6 +21,11 @@
         {{ $t('login:button') }}
       </span>
     </form>
+
+    <div class="app-login__auth-error" :class="{ 'app-login__auth-error--active': showError }">
+      <span>{{ $t('login:invalid') }}</span>
+      <div class="app-login__hide-error" @click="showError = false"></div>
+    </div>
   </div>
 </template>
 
@@ -32,6 +37,7 @@
         email: null,
         password: null,
         keepLogged: false,
+        showError: false,
       }
     },
     computed: {
@@ -46,13 +52,19 @@
         const { email, password, keepLogged } = this.$data;
         await this.$store.dispatch('user/login', { email, password, keepLogged }).catch((err) => {
           // TODO: show error notification
-          if (err === 401) throw 'wrong-auth';
+          if (err === 401) {
+            this.triggerError();
+            throw 'wrong-auth';
+          }
         });
-
-        console.log('ugabuga')
 
         this.$router.push({ name: 'home' });
       },
+      async triggerError() {
+        this.showError = true;
+        await new Promise(resolve => setTimeout(resolve, 4000));
+        this.showError = false;
+      }
     }
   };
 </script>
@@ -145,6 +157,51 @@
 
     &--inactive {
       cursor: default;
+    }
+  }
+
+  .app-login__auth-error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include flex-center;
+    width: 100%;
+    height: 84px;
+    opacity: 0;
+    background: #F24E33;
+    color: white;
+    font-size: 16px;
+
+    transition: opacity .3s .1s;
+    z-index: -1;
+
+    &--active {
+      opacity: 1;
+      z-index: 2;
+    }
+  }
+
+  .app-login__hide-error {
+    position: absolute;
+    right: 20px;
+    height: 20px;
+    width: 12px;
+    padding-left: 10px;
+    cursor: pointer;
+
+    &:before, &:after {
+      @include pseudo;
+      height: 20px;
+      width: 2px;
+      background: white;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(-45deg);
     }
   }
 </style>

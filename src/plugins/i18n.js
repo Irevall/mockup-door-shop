@@ -1,14 +1,14 @@
 import Vue from 'vue';
 import i18next from 'i18next';
 import VueI18Next from '@panter/vue-i18next';
-// import LanguageDetector from './language-detector';
+import LanguageDetector from './language-detector';
 
 import locales from '@/assets/locales';
 
 Vue.use(VueI18Next);
 
 i18next
-  // .use(LanguageDetector)
+  .use(LanguageDetector)
   .init({
     fallbackLng: 'en',
     whitelist: ['en', 'pl'],

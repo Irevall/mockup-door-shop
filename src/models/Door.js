@@ -1,3 +1,5 @@
+import { createEnum } from '@/models/CreateEnum';
+
 export class Door {
   constructor(raw) {
     this.type = raw ? raw.type : DoorType.SINGLE;
@@ -30,13 +32,13 @@ export class Door {
   }
 }
 
-export const DoorType = {
+export const DoorType = createEnum({
   SINGLE: 1,
   DOUBLE: 2,
-};
+});
 
-export const DoorColor = {
-  BLACK: 1,
-  GRAY: 2,
-  WHITE: 3,
-};
+export const DoorColor = createEnum({
+  BLACK: 0,
+  GRAY: 1,
+  WHITE: 2,
+});

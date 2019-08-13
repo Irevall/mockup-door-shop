@@ -6,26 +6,10 @@
 
     <template>
       <div class="settings-color">
-        <div class="setting-color">
-          <div class="setting-color__preview setting-color__preview--black"></div>
-          <label class="radio-label">{{ $t('selection:setting:door-color.black') }}
-            <input type="radio" class="radio-label__input" :checked="door.color === 1" @click="updateColor(1)"/>
-            <span class="radio-label__new-radio"></span>
-          </label>
-        </div>
-
-        <div class="setting-color">
-          <div class="setting-color__preview setting-color__preview--gray"></div>
-          <label class="radio-label">{{ $t('selection:setting:door-color.gray') }}
-            <input type="radio" class="radio-label__input" :checked="door.color === 2" @click="updateColor(2)"/>
-            <span class="radio-label__new-radio"></span>
-          </label>
-        </div>
-
-        <div class="setting-color">
-          <div class="setting-color__preview setting-color__preview--white"></div>
-          <label class="radio-label">{{ $t('selection:setting:door-color.white') }}
-            <input type="radio" class="radio-label__input" :checked="door.color === 3" @click="updateColor(3)"/>
+        <div class="setting-color" v-for="(color, index) in colorList">
+          <div class="setting-color__preview" :class="[`setting-color__preview--${color}`]"></div>
+          <label class="radio-label">{{ $t(`selection:setting:door-color.${color}`) }}
+            <input type="radio" class="radio-label__input" :checked="door.color === index" @click="updateColor(index)"/>
             <span class="radio-label__new-radio"></span>
           </label>
         </div>
@@ -37,17 +21,24 @@
 <script>
   import { mapGetters } from 'vuex';
   import SettingsSetting from '@/components/selection/settings/settings-setting';
+  import { DoorColor } from '@/models/Door';
 
   export default {
     name: 'settings-color',
     components: { SettingsSetting },
     computed: {
-      ...mapGetters({ door: 'door/door' })
+      ...mapGetters({ door: 'door/door' }),
+      colorList() {
+         return Object.keys(DoorColor).map(color => color.toLowerCase());
+      },
     },
     methods: {
       updateColor(value) {
         this.$store.commit('door/updateDoor', { property: 'color', value });
       }
+    },
+    created() {
+      // console.log(this.colors);
     }
   };
 </script>

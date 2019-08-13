@@ -14,6 +14,7 @@ const mutations = {
   },
   updateDoor(state, { property, value }) {
     state.door.update(property, value);
+    setItem('cache:door', state.door);
   }
 };
 

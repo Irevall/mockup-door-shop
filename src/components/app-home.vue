@@ -1,6 +1,6 @@
 <template>
   <div class="app-home">
-    <selection-navigation :step="step"/>
+    <selection-navigation :activeStep="step"/>
     <div class="app-home__content-wrapper">
     <div class="app-home__content">
       <selection-preview :door="door"/>

@@ -1,7 +1,7 @@
 <template>
   <div class="selection-navigation">
     <div class="selection-navigation__step" v-for="(step, index) in steps" :key="step">
-      <div class="step__indicator-wrapper" :class="{ 'step__indicator-wrapper--active': index === activeStep }">
+      <div class="step__indicator-wrapper" :class="{ 'step__indicator-wrapper--active': index + 1 === activeStep }">
         <div class="step__indicator-inner"></div>
       </div>
       <div class="step__text">

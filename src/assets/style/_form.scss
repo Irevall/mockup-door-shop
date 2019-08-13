@@ -45,3 +45,42 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.radio-label {
+  display: flex;
+  position: relative;
+  padding-left: 20px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.radio-label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.radio-label__new-radio {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  border: 3px solid #CDDBE5;
+  /*outline: 3px solid #CDDBE5;*/
+  border-radius: 50%;
+  transform: translateY(-60%);
+}
+
+.radio-label:hover input ~ .radio-label__new-radio {
+  background-color: #f0f0f0;
+}
+
+.radio-label input:checked ~ .radio-label__new-radio {
+  background-color: #6991b2;
+}

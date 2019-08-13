@@ -7,9 +7,9 @@
 
       <input class="app-login__input form-input__input" v-model="password" type="password" :placeholder="$t('login:placeholder.password')" autocomplete="current-password" required/>
 
-      <label class="app-login__checkbox">{{ $t('login:keep-me-logged') }}
-        <input type="checkbox" v-model="keepLogged">
-        <span class="checkmark"></span>
+      <label class="app-login__checkbox-label">{{ $t('login:keep-me-logged') }}
+        <input type="checkbox" class="app-login__checkbox-input" v-model="keepLogged">
+        <span class="app-login__new-checkbox"></span>
       </label>
 
 
@@ -83,7 +83,7 @@
     }
   }
 
-  .app-login__checkbox {
+  .app-login__checkbox-label {
     position: relative;
     display: flex;
     align-items: center;
@@ -105,7 +105,7 @@
       width: 0;
     }
 
-    > .checkmark {
+    > .app-login__new-checkbox {
       position: absolute;
       top: 0;
       left: 0;
@@ -114,22 +114,10 @@
       border: 1px solid #A5A1A1;
     }
 
-    /* When the checkbox is checked, add a blue background */
-
-    /* Create the checkmark/indicator (hidden when not checked) */
-    .checkmark:after {
+    .app-login__new-checkbox:after {
       content: "";
       position: absolute;
-      display: none;
-    }
-
-    /* Show the checkmark when checked */
-    input:checked ~ .checkmark:after {
-      display: block;
-    }
-
-    /* Style the checkmark/indicator */
-    .checkmark:after {
+      visibility: hidden;
       left: 50%;
       top: 50%;
       width: 5px;
@@ -137,6 +125,10 @@
       border: solid forestgreen;
       border-width: 0 3px 3px 0;
       transform: translate(-50%, -60%) rotate(45deg);
+    }
+
+    input:checked ~ .app-login__new-checkbox:after {
+      visibility: visible;
     }
   }
 

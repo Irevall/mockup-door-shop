@@ -23,6 +23,7 @@
   }
 
   .settings-setting__header {
+    display: flex;
     width: 150px;
     border-bottom: 1px solid #F7F7F7;
     padding: 5px 0;

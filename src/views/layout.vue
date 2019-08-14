@@ -17,5 +17,6 @@
 <style lang="scss">
   main {
     position: relative;
+    min-height: 100vh;
   }
 </style>

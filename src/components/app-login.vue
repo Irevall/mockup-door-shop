@@ -26,6 +26,16 @@
       <span>{{ $t('login:invalid') }}</span>
       <div class="app-login__hide-error" @click="showError = false"></div>
     </div>
+
+    <div class="app-login__progress-wrapper" :class="{ 'app-login__auth-error--active': showError }" v-show="progress > 0">
+      <div class="app-login__progress">
+        <span class="app-login__progress-title">{{ $t('login:processing') }}...</span>
+        <div class="app-login__progress-bar">
+          <div class="app-login__progress-inner-bar" :style="{ '--progress': `${progress}` }"></div>
+          <span class="app-login__progress-percentage">{{ Math.floor(progress * 100) }}%</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -38,6 +48,8 @@
         password: null,
         keepLogged: false,
         showError: false,
+        progress: 0,
+        animationId: null,
       }
     },
     computed: {
@@ -50,13 +62,22 @@
         if (!this.canSubmit) return;
 
         const { email, password, keepLogged } = this.$data;
+
+        this.update();
         await this.$store.dispatch('user/login', { email, password, keepLogged }).catch((err) => {
           // TODO: show error notification
           if (err === 401) {
+            this.progress = 0;
+            cancelAnimationFrame(this.animationId);
             this.triggerError();
-            throw 'wrong-auth';
           }
+
+          throw err;
         });
+
+        await new Promise(resolve => setInterval(() => {
+          if (this.progress >= 1) resolve()
+        }, 100));
 
         this.$router.push({ name: 'home' });
       },
@@ -64,8 +85,12 @@
         this.showError = true;
         await new Promise(resolve => setTimeout(resolve, 4000));
         this.showError = false;
-      }
-    }
+      },
+      update () {
+        this.progress += 0.0015;
+        if (this.progress < 1) this.animationId = requestAnimationFrame(() => this.update());
+      },
+    },
   };
 </script>
 
@@ -203,5 +228,56 @@
     &:after {
       transform: rotate(-45deg);
     }
+  }
+
+  .app-login__progress-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(#ADB2B5, 0.6);
+    backdrop-filter: blur(5px);
+  }
+
+  .app-login__progress {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @include flex-center;
+    flex-direction: column;
+    color: white;
+  }
+
+  .app-login__progress-title {
+    font-size: 24px;
+    margin-bottom: 50px;
+  }
+
+  .app-login__progress-bar {
+    position: relative;
+    overflow: hidden;
+    width: 500px;
+    height: 30px;
+    border: 1px solid white;
+    border-radius: 15px;
+  }
+
+  .app-login__progress-inner-bar {
+    position: absolute;
+    width: calc(var(--progress) * 100% - var(--progress) * 10px);
+    height: calc(100% - 10px);
+    background: white;
+    border-radius: 10px;
+    margin: 5px;
+  }
+
+  .app-login__progress-percentage {
+    position: absolute;
+    right: 20px;
+    @include flex-center;
+    height: 100%;
+    mix-blend-mode: difference;
   }
 </style>

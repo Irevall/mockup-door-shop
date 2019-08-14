@@ -41,6 +41,7 @@
   import SettingsSize from '@/components/selection/settings/settings-size';
   import SettingsDivision from '@/components/selection/settings/settings-division';
   import SettingsColor from '@/components/selection/settings/settings-color';
+  import { getLocationByCoords } from '@/services/ApiService';
 
   export default {
     name: 'app-home',
@@ -64,7 +65,7 @@
           this.step++
         }
       }
-    }
+    },
   };
 </script>
 

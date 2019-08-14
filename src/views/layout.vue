@@ -10,7 +10,7 @@
 
   export default {
     name: 'view-layout',
-    components: { AppNavigation  },
+    components: { AppNavigation },
   };
 </script>
 

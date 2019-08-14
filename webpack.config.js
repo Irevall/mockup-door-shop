@@ -28,6 +28,7 @@ module.exports = {
     new CopyWebpackPlugin([{ from: 'src/static', to: './' }]),
     new DefinePlugin({
       PRODUCTION: JSON.stringify(process.env.PRODUCTION === 'true'),
+      GOOGLE_API_KEY: JSON.stringify(process.env.GOOGLE_API_KEY),
     })
   ],
   output: {

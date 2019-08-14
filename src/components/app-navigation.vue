@@ -2,17 +2,22 @@
   <div class="app-navigation">
     <img class="app-navigation__logo" src="/logo.png"/>
     <navigation-language class="app-navigation__language"/>
-    <navigation-organization class="app-navigation__organization"/>
+    <navigation-organization class="app-navigation__organization" :style="{ visibility: authenticated ? 'visible' : 'hidden' }"/>
   </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
   import NavigationLanguage from '@/components/navigation/navigation-language';
   import NavigationOrganization from '@/components/navigation/navigation-organization';
 
   export default {
     name: 'app-navigation',
-    components: { NavigationOrganization, NavigationLanguage }
+    components: { NavigationOrganization, NavigationLanguage },
+    computed: {
+      ...mapGetters({ authenticated: 'user/authenticated' }),
+    }
   };
 </script>
 

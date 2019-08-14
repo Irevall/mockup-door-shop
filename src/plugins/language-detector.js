@@ -1,4 +1,5 @@
 import { getLocalItem, setLocalItem } from '@/services/StorageService';
+import { isString } from 'lodash-es';
 
 class LanguageDetector {
   init(services, detectorOptions, i18nextOptions) {
@@ -9,7 +10,7 @@ class LanguageDetector {
 
   detect() {
     const cachedLanguage = getLocalItem('language');
-    if (cachedLanguage) return cachedLanguage;
+    if (cachedLanguage && isString(cachedLanguage)) return cachedLanguage;
 
     const found = [];
 

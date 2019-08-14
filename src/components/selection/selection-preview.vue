@@ -1,7 +1,10 @@
 <template>
   <div class="selection-preview">
     <div class="selection-preview__door-wrapper">
-      <div class="selection-preview__door" v-for="doorIndex in door.type" :style="{ width: `${door.width}px`, height: `${door.height}px` }">
+      <div class="selection-preview__door" v-for="doorIndex in door.type"
+           :class="[`selection-preview__door--${color}`]"
+           :style="{ width: `${door.width}px`, height: `${door.height}px` }"
+      >
         <div class="door__beams">
           <div class="door__beam" v-for="beamIndex in door.beams"></div>
         </div>
@@ -39,7 +42,7 @@
 </template>
 
 <script>
-  import { Door } from '@/models/Door';
+  import { Door, DoorColor } from '@/models/Door';
 
   export default {
     name: 'selection-preview',
@@ -54,6 +57,9 @@
     computed: {
       combinedWidth() {
         return this.door.type * this.door.width;
+      },
+      color() {
+        return DoorColor.$getName(this.door.color).toLowerCase();
       }
     }
   };
@@ -86,6 +92,18 @@
 
     &:not(:first-of-type) {
       margin-left: 5px;
+    }
+
+    &--black {
+      --door-color: black;
+    }
+
+    &--gray {
+      --door-color: #797474;
+    }
+
+    &--white {
+      --door-color: #F4F2F2;
     }
   }
 

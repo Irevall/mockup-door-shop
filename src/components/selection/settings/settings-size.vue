@@ -7,7 +7,7 @@
     <template>
       <div class="settings-size">
         <label for="width">{{ $t('selection:setting:door-size.width') }}</label>
-        <input type="number" id="width" v-model="dimensions.width" @change="updateSize('width')" min="0" max="160" v-validate/>
+        <input type="number" id="width" v-model="dimensions.width" @change="updateSize('width')" min="0" max="160"/>
         <span>cm</span>
       </div>
 
@@ -44,9 +44,6 @@
     },
     methods: {
       async updateSize(property) {
-        const valid = await this.$validator.validateAll();
-        if (!valid) return;
-
         this.$store.commit('door/updateDoor', { property, value: this.dimensions[property] })
       },
     }

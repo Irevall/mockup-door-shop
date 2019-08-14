@@ -1,11 +1,13 @@
 export function createEnum(states) {
+  const names = Object.entries(states).reduce((names, [key, value]) => {
+    names[value] = key;
+    return names;
+  }, {});
+
   const result = { ...states };
 
   Object.defineProperty(result, '$getName', {
-    value: value => {
-      const result = Object.values.find(value);
-      return result || 'UNKNOWN';
-    }
+    value: value => names[value] || 'UNKNOWN'
   });
 
   return result;

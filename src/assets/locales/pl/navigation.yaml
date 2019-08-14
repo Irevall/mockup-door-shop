@@ -1,0 +1,12 @@
+select-language: Wybierz język
+my-organization: Moja organizacja
+
+organization:
+  title: Organizacja
+  name: Nazwa
+  email: Email
+  city: Miasto
+  address-line-1: Pierwsza część adresu
+  address-line-2: Druga część adresu
+  postal-code: Kod pocztowy
+  phone-number: Numer telefonu

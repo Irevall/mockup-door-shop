@@ -4,3 +4,6 @@ placeholder:
 
 keep-me-logged: Keep me logged in
 button: Login
+
+invalid: Invalid email or password
+processing: Processing

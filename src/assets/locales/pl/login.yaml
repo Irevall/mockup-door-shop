@@ -4,3 +4,6 @@ placeholder:
 
 keep-me-logged: Nie wylogowuj mnie
 button: Zaloguj
+
+invalid: Nieprawidłowy email lub hasło
+processing: Przetwarzanie

@@ -8,8 +8,6 @@ class LanguageDetector {
   }
 
   detect() {
-    console.log(this.services);
-
     const cachedLanguage = getLocalItem('language');
     if (cachedLanguage) return cachedLanguage;
 

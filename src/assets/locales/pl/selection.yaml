@@ -1,0 +1,29 @@
+navigation:
+  - Wybierz drzwi
+  - Wybierz podział drzwi
+  - Wybierz kolor
+
+setting:
+  door-type:
+    title: Typ drzwi
+    single: Pojedyncze
+    double: Podwójne
+
+  door-size:
+    title: Rozmiar drzwi
+    width: Szerokość
+    height: Wysokość
+
+  door-division:
+    title: Podział drzwi
+    beams: Liczba belek
+    posts: Liczba słupków
+
+  door-color:
+    title: Wybierz kolor
+    black: Czarny
+    gray: Szary
+    white: Biały
+
+back: Wstecz
+next-step: Dalej
